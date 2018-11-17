@@ -31,6 +31,14 @@ var down = keyboard_check(ord('S'));
 var left = keyboard_check(ord('A'));
 var right = keyboard_check(ord('D'));
 
+var loc_max_speed = max_speed;
+for (var i = 0; i &lt; instance_number(obj_speedzone); i++)    {
+    var zone = instance_find(obj_speedzone, i);
+    if (point_distance(x, y, zone.x, zone.y) &lt;= zone.lim_radius * meter_size)   {
+        loc_max_speed = min(loc_max_speed, zone.lim_speed);
+    }
+}
+
 if (up || down) {
     //  Parallel
     var thrust = dat_get_raw(equipped_engine, 'engine_thrust', 0) * dat_get_raw(equipped_ship, 'thrust_mult', 1);
@@ -49,38 +57,14 @@ if (left || right)  {
 }
 
 //  Update position
+thrusting = (up &amp;&amp; !down);
+stopping = ((down &amp;&amp; !up) &amp;&amp; (phys_speed &gt; 0));
 event_inherited();
-
-var eng_count = dat_get_raw(equipped_ship, 'engine_points', 0);
-for (var e = 0; e &lt; eng_count; e++)    {
-    if (up &amp;&amp; !down)    {
-        if (my_trail_fx[e] == noone)   {
-            var e_color = dat_get_raw(equipped_engine, 'color', c_black);
-            my_trail_fx[e] = instance_create(0, 0, obj_fx_trail);
-            my_trail_fx[e].color = e_color;
-        }
-        var len = dat_get_raw(equipped_ship, 'engine_point_len_' + string(e), 0);
-        var dir = dat_get_raw(equipped_ship, 'engine_point_dir_' + string(e), 0);
-        var xx = x + lengthdir_x(len, dir + image_angle);
-        var yy = y + lengthdir_y(len, dir + image_angle);
-        
-        trail_add_point(my_trail_fx[e], xx, yy, image_angle);
-    }   else    {
-        if (my_trail_fx[e] != noone)   {
-            my_trail_fx[e].fade = true;
-            my_trail_fx[e] = noone;
-        }
-    }
-}
-
-if (up &amp;&amp; !down)    {
-    thruster_flame_size = 1;
-}   else    {
-    thruster_flame_size = max(0, thruster_flame_size - random(1) * 5 * dT);
-}
 
 view_xview[0] = x - view_wview[0] / 2;
 view_yview[0] = y - view_hview[0] / 2;
+background_xscale[0] = view_wview[0] / view_wport[0];
+background_yscale[0] = view_hview[0] / view_hport[0];
 </string>
           </argument>
         </arguments>

@@ -22,9 +22,13 @@
     </sprites>
     <sprites name="FX">
       <sprite>sprites\spr_fx_engine_flame</sprite>
+      <sprite>sprites\spr_fx_speedzone</sprite>
     </sprites>
     <sprites name="HUD">
       <sprite>sprites\spr_hud_lower_left</sprite>
+    </sprites>
+    <sprites name="Station">
+      <sprite>sprites\spr_station_medium_core</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -88,6 +92,13 @@
       </objects>
       <object>objects\obj_fx_trail</object>
     </objects>
+    <objects name="Station">
+      <object>objects\obj_station_par</object>
+      <object>objects\obj_station_core</object>
+    </objects>
+    <objects name="Utility Obj">
+      <object>objects\obj_speedzone</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
@@ -108,4 +119,9 @@
   <help>
     <rtf>help.rtf</rtf>
   </help>
+  <TutorialState>
+    <IsTutorial>0</IsTutorial>
+    <TutorialName></TutorialName>
+    <TutorialPage>0</TutorialPage>
+  </TutorialState>
 </assets>
