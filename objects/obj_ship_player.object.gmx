@@ -73,11 +73,6 @@ if (left || right)  {
 thrusting = (up &amp;&amp; !down);
 stopping = ((down &amp;&amp; !up) &amp;&amp; (phys_speed &gt; 0));
 event_inherited();
-
-view_xview[0] = x - view_wview[0] / 2;
-view_yview[0] = y - view_hview[0] / 2;
-background_xscale[0] = view_wview[0] / view_wport[0];
-background_yscale[0] = view_hview[0] / view_hport[0];
 </string>
           </argument>
         </arguments>

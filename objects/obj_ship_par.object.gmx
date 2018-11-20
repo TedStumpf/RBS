@@ -63,6 +63,13 @@ thruster_flame_size = 0;
             <string>/// Physics
 x += lengthdir_x(phys_speed * dT * meter_size, phys_dir);
 y += lengthdir_y(phys_speed * dT * meter_size, phys_dir);
+
+if (object_index == obj_ship_player)    {    
+    view_xview[0] = x - view_wview[0] / 2;
+    view_yview[0] = y - view_hview[0] / 2;
+    background_xscale[0] = view_wview[0] / view_wport[0];
+    background_yscale[0] = view_hview[0] / view_hport[0];
+}
 </string>
           </argument>
         </arguments>
@@ -98,7 +105,6 @@ for (var e = 0; e &lt; eng_count; e++)    {
         var yy = y + lengthdir_y(len, dir + image_angle);
         
         trail_add_point(my_trail_fx[e], xx, yy, image_angle);
-        
         lighting_add_light(spr_fx_light, xx, yy, 1, 0, e_color, thruster_flame_size);
     }   else    {
         if (my_trail_fx[e] != noone)   {
