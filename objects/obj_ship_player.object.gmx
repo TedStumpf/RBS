@@ -43,7 +43,7 @@ for (var i = 0; i &lt; instance_number(obj_speedzone); i++)    {
 if (phys_speed &gt; loc_max_speed) {
     up = false;
     down = true;
-    tm = 2;
+    tm = 5;
 } else if (phys_speed == loc_max_speed)    {
     up = false;
 }

@@ -87,8 +87,8 @@ y += lengthdir_y(phys_speed * dT * meter_size, phys_dir);
 var eng_count = dat_get_raw(equipped_ship, 'engine_points', 0);
 for (var e = 0; e &lt; eng_count; e++)    {
     if (thrusting)    {
+        var e_color = dat_get_raw(equipped_engine, 'color', c_black);
         if (my_trail_fx[e] == noone)   {
-            var e_color = dat_get_raw(equipped_engine, 'color', c_black);
             my_trail_fx[e] = instance_create(0, 0, obj_fx_trail);
             my_trail_fx[e].color = e_color;
         }
@@ -98,6 +98,8 @@ for (var e = 0; e &lt; eng_count; e++)    {
         var yy = y + lengthdir_y(len, dir + image_angle);
         
         trail_add_point(my_trail_fx[e], xx, yy, image_angle);
+        
+        lighting_add_light(spr_fx_light, xx, yy, 1, 0, e_color, thruster_flame_size);
     }   else    {
         if (my_trail_fx[e] != noone)   {
             my_trail_fx[e].fade = true;
@@ -138,7 +140,11 @@ if (thrusting || stopping)  {
           <argument>
             <kind>1</kind>
             <string>/// Render Ship
+//  Shadow
 lighting_draw_shadow(sprite_base, 0, x, y, image_xscale * 1.5, image_yscale * 1.5, image_angle, c_black, 0.5);
+//  Mask
+lighting_add_mask(sprite_base, 0, x, y, image_xscale, image_yscale, image_angle);
+//  Ship
 draw_sprite_ext(sprite_base, 0, x, y, image_xscale, image_yscale, image_angle, color_0, 1);
 draw_sprite_ext(sprite_base, 1, x, y, image_xscale, image_yscale, image_angle, color_1, 1);
 draw_sprite_ext(sprite_paint, paint_eqipped, x, y, image_xscale, image_yscale, image_angle, color_2, 1);

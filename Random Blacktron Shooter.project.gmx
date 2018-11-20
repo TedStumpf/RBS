@@ -23,6 +23,7 @@
     <sprites name="FX">
       <sprite>sprites\spr_fx_engine_flame</sprite>
       <sprite>sprites\spr_fx_speedzone</sprite>
+      <sprite>sprites\spr_fx_light</sprite>
     </sprites>
     <sprites name="HUD">
       <sprite>sprites\spr_hud_lower_left</sprite>
@@ -81,6 +82,7 @@
       <script>scripts\lighting_add_mask.gml</script>
       <script>scripts\refresh_surface.gml</script>
       <script>scripts\lighting_draw_shadow.gml</script>
+      <script>scripts\lighting_add_light.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">

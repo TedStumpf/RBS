@@ -13,7 +13,7 @@
   <code>/// Resize screen
 var sw = display_get_width(), sh = display_get_height();
 var wid_mult = 500;
-var scale = 0.5;//max(1, floor(sw / wid_mult));
+var scale = 1;//max(1, floor(sw / wid_mult));
 view_wview[0] = sw / scale;
 view_hview[0] = sh / scale;
 view_wport[0] = sw;

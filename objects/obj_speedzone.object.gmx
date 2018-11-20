@@ -59,7 +59,7 @@ image_blend = c_red;
 if (place_meeting(x, y, obj_ship_player))   {
     image_alpha = min(1, image_alpha + 3 * dT);
 } else {
-    image_alpha = max(0.2, image_alpha - 3 * dT);
+    image_alpha = max(0.1, image_alpha - 3 * dT);
 }
 depth = 10000 + lim_speed;
 </string>
@@ -112,23 +112,24 @@ image_yscale = scale / 100;
           <argument>
             <kind>1</kind>
             <string>/// Draw
-/*draw_set_blend_mode_ext(bm_one, bm_inv_src_alpha);
-draw_self();
-draw_set_blend_mode(bm_normal);*/
-draw_primitive_begin(pr_trianglefan);
-draw_vertex_colour(x, y, image_blend, 0);
 var p = 40, t = 10;
+var ci = merge_colour(c_black, image_blend, image_alpha * 0.5 - 0.05);
+var co = merge_colour(c_black, image_blend, image_alpha);
+
+draw_primitive_begin(pr_trianglefan);
+draw_vertex_colour(x, y, c_black, 1);
 for (var a = 0; a &lt;= 360; a += 360 / p) {
-    draw_vertex_colour(x + lengthdir_x(scale, a), y + lengthdir_y(scale, a), image_blend, image_alpha * 0.5);
+    draw_vertex_colour(x + lengthdir_x(scale, a), y + lengthdir_y(scale, a), ci, 1);
 }
 draw_primitive_end();
 
-draw_primitive_begin(pr_trianglelist);
-draw_vertex_colour(x + scale, y, image_blend, image_alpha);
-for (var a = 0; a &lt;= 360; a += 360 / p) {
-    draw_vertex_colour(x + lengthdir_x(scale + t, a), y + lengthdir_y(scale + t, a), image_blend, image_alpha);
-    draw_vertex_colour(x + lengthdir_x(scale + t, a + (360 / p)), y + lengthdir_y(scale + t, a + (360 / p)), image_blend, image_alpha);
+draw_primitive_begin(pr_trianglestrip);
+draw_vertex_colour(x + scale, y, co, 1);
+for (var a = 0; a &lt; 360; a += 360 / p) {
+    draw_vertex_colour(x + lengthdir_x(scale + t, a), y + lengthdir_y(scale + t, a), co, 1);
+    draw_vertex_colour(x + lengthdir_x(scale, a + (360 / p)), y + lengthdir_y(scale, a + (360 / p)), co, 1);
 }
+draw_vertex_colour(x + scale + t, y, co, 1);
 draw_primitive_end();
 </string>
           </argument>
