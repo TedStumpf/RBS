@@ -138,7 +138,7 @@ if (thrusting || stopping)  {
           <argument>
             <kind>1</kind>
             <string>/// Render Ship
-draw_sprite_ext(sprite_base, 0, x, y, image_xscale * 1.5, image_yscale * 1.5, image_angle, c_black, 0.4);
+lighting_draw_shadow(sprite_base, 0, x, y, image_xscale * 1.5, image_yscale * 1.5, image_angle, c_black, 0.5);
 draw_sprite_ext(sprite_base, 0, x, y, image_xscale, image_yscale, image_angle, color_0, 1);
 draw_sprite_ext(sprite_base, 1, x, y, image_xscale, image_yscale, image_angle, color_1, 1);
 draw_sprite_ext(sprite_paint, paint_eqipped, x, y, image_xscale, image_yscale, image_angle, color_2, 1);

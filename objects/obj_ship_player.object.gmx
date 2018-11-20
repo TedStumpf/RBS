@@ -30,6 +30,7 @@ var up = keyboard_check(ord('W'));
 var down = keyboard_check(ord('S'));
 var left = keyboard_check(ord('A'));
 var right = keyboard_check(ord('D'));
+var tm = 1;
 
 var loc_max_speed = max_speed;
 for (var i = 0; i &lt; instance_number(obj_speedzone); i++)    {
@@ -39,12 +40,24 @@ for (var i = 0; i &lt; instance_number(obj_speedzone); i++)    {
     }
 }
 
+if (phys_speed &gt; loc_max_speed) {
+    up = false;
+    down = true;
+    tm = 2;
+} else if (phys_speed == loc_max_speed)    {
+    up = false;
+}
+
 if (up || down) {
     //  Parallel
     var thrust = dat_get_raw(equipped_engine, 'engine_thrust', 0) * dat_get_raw(equipped_ship, 'thrust_mult', 1);
-    var acc = thrust / dat_get_total_mass(equipped_ship, equipped_engine, equipped_power);
-    phys_speed += acc * (up - down) * dT;
-    phys_speed = clamp(phys_speed, 0, max_speed);
+    var acc = tm * thrust / dat_get_total_mass(equipped_ship, equipped_engine, equipped_power);
+    var post = phys_speed + acc * (up - down) * dT;
+    if ((phys_speed != loc_max_speed) &amp;&amp; (median(phys_speed, post, loc_max_speed) == loc_max_speed))   {
+        phys_speed = loc_max_speed;
+    }   else    {
+        phys_speed = clamp(post, 0, max_speed);
+    }
 }
 
 if (left || right)  {
@@ -89,7 +102,8 @@ background_yscale[0] = view_hview[0] / view_hport[0];
             <kind>1</kind>
             <string>/// Draw GUI
 draw_sprite(spr_hud_lower_left, 0, 0, window_get_height());
-
+draw_set_color(c_red);
+draw_text(8, 8, string(fps));
 
 //  Health
 var xx = 20, mh = 160, p = my_internal / max_internal;

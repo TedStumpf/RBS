@@ -77,6 +77,11 @@
     <scripts name="HUD">
       <script>scripts\draw_hudbar.gml</script>
     </scripts>
+    <scripts name="Lighting">
+      <script>scripts\lighting_add_mask.gml</script>
+      <script>scripts\refresh_surface.gml</script>
+      <script>scripts\lighting_draw_shadow.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Controllers">
@@ -91,6 +96,7 @@
         <object>objects\obj_space_dust</object>
       </objects>
       <object>objects\obj_fx_trail</object>
+      <object>objects\obj_fx_lighting</object>
     </objects>
     <objects name="Station">
       <object>objects\obj_station_par</object>
