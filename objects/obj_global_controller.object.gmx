@@ -31,6 +31,9 @@ dat_init_all();
 
 globalvar dT;
 dT = 1 / 60;
+globalvar gT;
+gT = 1 / 60;
+menu_windup = 1;
 
 instance_create(0, 0, obj_ship_player);
 /*repeat(20)
@@ -60,6 +63,36 @@ instance_create(0, 0, obj_ship_player);
             <string>/// Delta Time
 var m = (1 / 60);
 dT = clamp(1 / fps, 0.5 * m, 2 * m);
+if (instance_exists(obj_menu_par))  {
+    gT = 0;
+    menu_windup = 0;
+}   else    {
+    gT = dT * menu_windup;
+    menu_windup = min(1, menu_windup + dT);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>game_end();
 </string>
           </argument>
         </arguments>
@@ -82,7 +115,10 @@ dT = clamp(1 / fps, 0.5 * m, 2 * m);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>game_end();
+            <string>/// Menu create
+if (!instance_exists(obj_menu_par)) {
+    instance_create(0, 0, obj_menu_par);
+}
 </string>
           </argument>
         </arguments>

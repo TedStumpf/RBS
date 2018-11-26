@@ -9,6 +9,6 @@ ds_map_add(map, 'name', 'RTG Basic');
 
 ds_map_add(map, 'mass', 500);
 ds_map_add(map, 'fuel_consumption', 0);
-ds_map_add(map, 'power_generation', 20);
+ds_map_add(map, 'power_generation', 10);
 ds_map_add(map, 'power_storage', 1000);
 ds_map_add(map, 'heat_generation', 1);

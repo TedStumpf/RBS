@@ -52,7 +52,7 @@ if (up || down) {
     //  Parallel
     var thrust = dat_get_raw(equipped_engine, 'engine_thrust', 0) * dat_get_raw(equipped_ship, 'thrust_mult', 1);
     var acc = tm * thrust / dat_get_total_mass(equipped_ship, equipped_engine, equipped_power);
-    var post = phys_speed + acc * (up - down) * dT;
+    var post = phys_speed + acc * (up - down) * gT;
     if ((phys_speed != loc_max_speed) &amp;&amp; (median(phys_speed, post, loc_max_speed) == loc_max_speed))   {
         phys_speed = loc_max_speed;
     }   else    {
@@ -64,7 +64,7 @@ if (left || right)  {
     //  Rotational
     var thrust = dat_get_raw(equipped_engine, 'engine_rot', 0) * dat_get_raw(equipped_ship, 'handling_mult', 1);
     var rot = 60 * thrust / dat_get_total_mass(equipped_ship, equipped_engine, equipped_power);
-    phys_dir += rot * (left - right) * dT;
+    phys_dir += rot * (left - right) * gT;
     phys_dir = (phys_dir + 360) % 360;
     image_angle = phys_dir;
 }
@@ -183,13 +183,12 @@ for (var i = 0; i &lt; 8; i++) {
             <string>/// Draw GUI Arrows
 //  Nearest station
 var core = instance_nearest(x, y, obj_station_par);
-//if (instance_exists(core))  {
+if (instance_exists(core))  {
     var dir = point_direction(x, y, core.x, core.y);
     var xx = (x - view_xview[0]) * _gscale;
     var yy = (y - view_yview[0]) * _gscale;
     draw_sprite_ext(spr_hud_arrow, 0, xx + lengthdir_x(100, dir), yy + lengthdir_y(100, dir), 0.5, 0.5, dir, c_green, 0.7);
-    show_debug_message(string(xx) + ", " + string(yy));
-//}
+}
 </string>
           </argument>
         </arguments>

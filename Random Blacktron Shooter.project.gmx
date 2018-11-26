@@ -108,6 +108,9 @@
     <objects name="Utility Obj">
       <object>objects\obj_speedzone</object>
     </objects>
+    <objects name="Menus">
+      <object>objects\obj_menu_par</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

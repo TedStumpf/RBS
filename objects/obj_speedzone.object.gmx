@@ -57,9 +57,9 @@ image_blend = c_red;
             <kind>1</kind>
             <string>/// Fade
 if (place_meeting(x, y, obj_ship_player))   {
-    image_alpha = min(1, image_alpha + 3 * dT);
+    image_alpha = min(1, image_alpha + 3 * gT);
 } else {
-    image_alpha = max(0.1, image_alpha - 3 * dT);
+    image_alpha = max(0.1, image_alpha - 3 * gT);
 }
 depth = 10000 + lim_speed;
 </string>

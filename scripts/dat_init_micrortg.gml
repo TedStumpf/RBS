@@ -9,6 +9,6 @@ ds_map_add(map, 'name', 'RTG Micro');
 
 ds_map_add(map, 'mass', 200);
 ds_map_add(map, 'fuel_consumption', 0);
-ds_map_add(map, 'power_generation', 10);
+ds_map_add(map, 'power_generation', 5);
 ds_map_add(map, 'power_storage', 500);
 ds_map_add(map, 'heat_generation', 0.4);

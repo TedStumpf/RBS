@@ -13,4 +13,5 @@ ds_map_add(map, 'fuel_type', fuel_hydrazine);
 ds_map_add(map, 'engine_thrust', 800000);
 ds_map_add(map, 'engine_rot', 35000);
 ds_map_add(map, 'engine_consumption', 0.005);
+ds_map_add(map, 'heat_generation', 1.2);
 
