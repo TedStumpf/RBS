@@ -27,6 +27,7 @@
     </sprites>
     <sprites name="HUD">
       <sprite>sprites\spr_hud_lower_left</sprite>
+      <sprite>sprites\spr_hud_arrow</sprite>
     </sprites>
     <sprites name="Station">
       <sprite>sprites\spr_station_medium_core</sprite>

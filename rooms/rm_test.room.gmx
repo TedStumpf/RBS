@@ -11,11 +11,12 @@
   <colour>983040</colour>
   <showcolour>-1</showcolour>
   <code>/// Resize screen
+globalvar _gscale;
 var sw = display_get_width(), sh = display_get_height();
 var wid_mult = 500;
-var scale = 0.5;//max(1, floor(sw / wid_mult));
-view_wview[0] = sw / scale;
-view_hview[0] = sh / scale;
+_gscale = 0.5;//max(1, floor(sw / wid_mult));
+view_wview[0] = sw / _gscale;
+view_hview[0] = sh / _gscale;
 view_wport[0] = sw;
 view_hport[0] = sh;
 surface_resize(application_surface, sw, sh);</code>

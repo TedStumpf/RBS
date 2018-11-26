@@ -95,7 +95,7 @@ event_inherited();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw GUI
+            <string>/// Draw GUI Bars
 draw_sprite(spr_hud_lower_left, 0, 0, window_get_height());
 draw_set_color(c_red);
 draw_text(8, 8, string(fps));
@@ -160,6 +160,36 @@ for (var i = 0; i &lt; 8; i++) {
 
 //draw_set_colour(c_red);
 //draw_text(16, 16, string(phys_speed) + ", " + string(phys_dir));
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw GUI Arrows
+//  Nearest station
+var core = instance_nearest(x, y, obj_station_par);
+//if (instance_exists(core))  {
+    var dir = point_direction(x, y, core.x, core.y);
+    var xx = (x - view_xview[0]) * _gscale;
+    var yy = (y - view_yview[0]) * _gscale;
+    draw_sprite_ext(spr_hud_arrow, 0, xx + lengthdir_x(100, dir), yy + lengthdir_y(100, dir), 0.5, 0.5, dir, c_green, 0.7);
+    show_debug_message(string(xx) + ", " + string(yy));
+//}
 </string>
           </argument>
         </arguments>

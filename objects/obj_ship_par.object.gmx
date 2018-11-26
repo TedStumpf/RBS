@@ -105,7 +105,7 @@ for (var e = 0; e &lt; eng_count; e++)    {
         var yy = y + lengthdir_y(len, dir + image_angle);
         
         trail_add_point(my_trail_fx[e], xx, yy, image_angle);
-        lighting_add_light(spr_fx_light, xx, yy, 1, 0, e_color, thruster_flame_size);
+        lighting_add_light(spr_fx_light, xx, yy, random_range(0.8, 1.2), 0, e_color, thruster_flame_size);
     }   else    {
         if (my_trail_fx[e] != noone)   {
             my_trail_fx[e].fade = true;
