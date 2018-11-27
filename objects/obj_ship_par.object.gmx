@@ -128,38 +128,40 @@ my_heat = clamp(my_heat - bleed * gT, 0, max_heat);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Trails
-var eng_count = dat_get_raw(equipped_ship, 'engine_points', 0);
-for (var e = 0; e &lt; eng_count; e++)    {
-    if (thrusting)    {
-        var e_color = dat_get_raw(equipped_engine, 'color', c_black);
-        if (my_trail_fx[e] == noone)   {
-            my_trail_fx[e] = instance_create(0, 0, obj_fx_trail);
-            my_trail_fx[e].color = e_color;
-        }
-        var len = dat_get_raw(equipped_ship, 'engine_point_len_' + string(e), 0);
-        var dir = dat_get_raw(equipped_ship, 'engine_point_dir_' + string(e), 0);
-        var xx = x + lengthdir_x(len, dir + image_angle);
-        var yy = y + lengthdir_y(len, dir + image_angle);
-        
-        trail_add_point(my_trail_fx[e], xx, yy, image_angle);
-        lighting_add_light(spr_fx_light, xx, yy, random_range(0.8, 1.2), 0, e_color, thruster_flame_size);
-    }   else    {
-        if (my_trail_fx[e] != noone)   {
-            my_trail_fx[e].fade = true;
-            my_trail_fx[e] = noone;
+            <string>/// Trails and Fuel
+if (gT &gt; 0) {
+    var eng_count = dat_get_raw(equipped_ship, 'engine_points', 0);
+    for (var e = 0; e &lt; eng_count; e++)    {
+        if (thrusting)    {
+            var e_color = dat_get_raw(equipped_engine, 'color', c_black);
+            if (my_trail_fx[e] == noone)   {
+                my_trail_fx[e] = instance_create(0, 0, obj_fx_trail);
+                my_trail_fx[e].color = e_color;
+            }
+            var len = dat_get_raw(equipped_ship, 'engine_point_len_' + string(e), 0);
+            var dir = dat_get_raw(equipped_ship, 'engine_point_dir_' + string(e), 0);
+            var xx = x + lengthdir_x(len, dir + image_angle);
+            var yy = y + lengthdir_y(len, dir + image_angle);
+            
+            trail_add_point(my_trail_fx[e], xx, yy, image_angle);
+            lighting_add_light(spr_fx_light, xx, yy, random_range(0.8, 1.2), 0, e_color, thruster_flame_size);
+        }   else    {
+            if (my_trail_fx[e] != noone)   {
+                my_trail_fx[e].fade = true;
+                my_trail_fx[e] = noone;
+            }
         }
     }
-}
-
-if (thrusting)    {
-    thruster_flame_size = 1;
-}   else    {
-    thruster_flame_size = max(0, thruster_flame_size - random(1) * 5 * gT);
-}
-
-if (thrusting || stopping)  {
-    my_fuel -= dat_get_raw(equipped_engine, 'engine_consumption', 100) * gT;
+    
+    if (thrusting)    {
+        thruster_flame_size = 1;
+    }   else    {
+        thruster_flame_size = max(0, thruster_flame_size - random(1) * 5 * gT);
+    }
+    
+    if (thrusting || stopping)  {
+        my_fuel -= dat_get_raw(equipped_engine, 'engine_consumption', 100) * gT;
+    }
 }
 </string>
           </argument>
