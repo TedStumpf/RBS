@@ -1,4 +1,8 @@
 /// draw_trail_advanced(list, color, icolor, width, min_alpha)
+if (!global.setting_trail_fancy)    {
+    draw_trail_line(argument0, argument1, argument3, argument4, 1);
+    return noone;
+}
 var list = argument0;
 var color = argument1;
 var icolor = argument2;

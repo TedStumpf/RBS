@@ -28,6 +28,11 @@
             <string>/// Init all globals
 dat_init_all();
 
+//  Settings
+global.setting_light_on = setting_light;
+global.setting_trail_fancy = setting_trail;
+global.setting_advanced_render = setting_advanced;
+
 
 globalvar dT;
 dT = 1 / 60;

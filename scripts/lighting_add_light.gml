@@ -1,4 +1,5 @@
 /// lighting_add_light(light, x, y, scale, rot, color, alpha)
+if (!global.setting_light_on) exit;
 with (obj_fx_lighting)  {
     surface_set_target(light_surf);
     draw_set_blend_mode(bm_add);
