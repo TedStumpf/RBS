@@ -85,7 +85,14 @@
       <script>scripts\lighting_draw_shadow.gml</script>
       <script>scripts\lighting_add_light.gml</script>
     </scripts>
+    <scripts name="Misc">
+      <script>scripts\change_zoom.gml</script>
+    </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_main</font>
+    <font>fonts\fnt_debug</font>
+  </fonts>
   <objects name="objects">
     <objects name="Controllers">
       <object>objects\obj_global_controller</object>
@@ -110,14 +117,16 @@
     </objects>
     <objects name="Menus">
       <object>objects\obj_menu_par</object>
+      <object>objects\obj_menu_pause</object>
+      <object>objects\obj_menu_settings</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
   <constants number="14">
-    <constant name="setting_light">true</constant>
-    <constant name="setting_trail">true</constant>
+    <constant name="setting_light">false</constant>
+    <constant name="setting_trail">false</constant>
     <constant name="setting_advanced">false</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>

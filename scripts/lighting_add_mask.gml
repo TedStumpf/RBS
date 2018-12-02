@@ -1,5 +1,5 @@
 /// lighting_add_mask(sprite, subimg, x, y, xscale, yscale, rot)
-if (!global.setting_light_on) exit;
+if ((!global.setting_light_on) || (!obj_fx_lighting.active)) exit;
 with (obj_fx_lighting)  {
     surface_set_target(mask_surf);
     draw_sprite_ext(argument0, argument1, argument2 - view_xview[0], argument3 - view_yview[0], argument4, argument5, argument6, c_black, 1);

@@ -1,5 +1,5 @@
 /// lighting_draw_shadow(sprite, subimg, x, y, xscale, yscale, rot, color, alpha)
-if (!global.setting_light_on) exit;
+if ((!global.setting_light_on) || (!obj_fx_lighting.active)) exit;
 with (obj_fx_lighting)  {
     shadow_surf = refresh_surface(shadow_surf, c_black, 0, dw, dh);
     surface_set_target(shadow_surf);

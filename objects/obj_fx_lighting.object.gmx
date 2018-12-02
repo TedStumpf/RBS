@@ -29,6 +29,9 @@
 light_surf = noone;
 shadow_surf = noone;
 mask_surf = noone;
+active = false;
+
+dw = view_wview[0]; dh = view_hview[0];
 </string>
           </argument>
         </arguments>
@@ -53,6 +56,7 @@ mask_surf = noone;
             <kind>1</kind>
             <string>/// Clear
 if (!global.setting_light_on) exit;
+active = true;
 dw = view_wview[0]; dh = view_hview[0];
 light_surf = refresh_surface(light_surf, c_black, 1, dw, dh);
 mask_surf = refresh_surface(mask_surf, c_white, 0, dw, dh);
@@ -79,7 +83,7 @@ mask_surf = refresh_surface(mask_surf, c_white, 0, dw, dh);
           <argument>
             <kind>1</kind>
             <string>/// Draw lights
-if (!global.setting_light_on) exit;
+if ((!global.setting_light_on) || (!active)) exit;
 surface_set_target(light_surf);
 draw_set_blend_mode_ext(bm_zero, bm_src_alpha);
 draw_surface(mask_surf, 0, 0);
@@ -88,6 +92,7 @@ draw_set_blend_mode(bm_add);
 surface_reset_target();
 draw_surface(light_surf, view_xview[0], view_yview[0]);
 draw_set_blend_mode(bm_normal);
+active = false;
 </string>
           </argument>
         </arguments>
