@@ -26,10 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>/// Create the ship
-equipped_ship = dat_create_ship(shp_striker);
-equipped_engine = dat_create_engine(eng_hyper03);
-equipped_power = dat_create_power(pow_stockrtg);
-dat_update_local_ship(equipped_ship, true);
+var equ_ship = dat_create_ship(shp_striker);
+var equ_engine = dat_create_engine(eng_hyper03);
+var equ_power = dat_create_power(pow_stockrtg);
+vessel = create_vessel_map(equ_ship, equ_engine, equ_power);
+dat_update_local_ship(vessel, true);
 
 phys_speed = 0;
 phys_dir = 0;

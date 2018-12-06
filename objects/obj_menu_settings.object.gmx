@@ -131,7 +131,7 @@ var my = window_mouse_get_y();
 var last = selected;
 selected = -1;
 
-var yy = 2 * h / 5;
+var yy = 2 * h / 5 - 5;
 for (var i = 0; i &lt; text_items; i++)    {
     if ((my &gt;= yy) &amp;&amp; (my &lt; yy + 60))   {
         selected = i;

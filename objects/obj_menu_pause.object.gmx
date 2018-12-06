@@ -29,8 +29,8 @@
 title = "PAUSED";
 text_items = 3
 selected = 0;
-text_item[0] = "Settings";
-text_item[1] = "Resume";
+text_item[0] = "Resume";
+text_item[1] = "Settings";
 text_item[2] = "Quit";
 
 </string>
@@ -87,7 +87,7 @@ var my = window_mouse_get_y();
 var last = selected;
 selected = -1;
 
-var yy = 2 * h / 5;
+var yy = 2 * h / 5 - 5;
 for (var i = 0; i &lt; text_items; i++)    {
     if ((my &gt;= yy) &amp;&amp; (my &lt; yy + 60))   {
         selected = i;
@@ -119,12 +119,12 @@ for (var i = 0; i &lt; text_items; i++)    {
 if ((mouse_check_button_pressed(mb_left)) &amp;&amp; (selected != -1))  {
     switch (selected)   {
         case 0:
+            alarm[0] = 1;
+            break;
+        case 1:
             var new_menu = instance_create(0, 0, obj_menu_settings);
             new_menu.parent = id;
             visible = false;
-            break;
-        case 1:
-            alarm[0] = 1;
             break;
         case 2:
             game_end();

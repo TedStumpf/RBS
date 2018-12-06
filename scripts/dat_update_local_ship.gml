@@ -1,8 +1,9 @@
-/// dat_update_local_ship(base_map, new)
-sprite_base = dat_get_raw(argument0, 'sprite', spr_smallship_striker);
-sprite_paint = dat_get_raw(argument0, 'sprite_paint', spr_smallship_striker_paint);
+/// dat_update_local_ship(vessel, new)
+var dat_ship = dat_get_default(argument0, 'dat_ship', -1);
+sprite_base = dat_get_raw(dat_ship, 'sprite', spr_smallship_striker);
+sprite_paint = dat_get_raw(dat_ship, 'sprite_paint', spr_smallship_striker_paint);
 paint_eqipped = 0;
-sprite_lights = dat_get_raw(argument0, 'sprite_lights', spr_smallship_striker_lights);
+sprite_lights = dat_get_raw(dat_ship, 'sprite_lights', spr_smallship_striker_lights);
 
 color_0 = dat_get_default(argument0, 'color_0', c_red);
 color_1 = dat_get_default(argument0, 'color_1', c_lime);

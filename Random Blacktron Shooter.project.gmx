@@ -32,6 +32,9 @@
     <sprites name="Station">
       <sprite>sprites\spr_station_medium_core</sprite>
     </sprites>
+    <sprites name="Projectiles">
+      <sprite>sprites\spr_projectile_bullet</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_test</background>
@@ -68,6 +71,9 @@
         <script>scripts\dat_get_total_mass.gml</script>
       </scripts>
       <script>scripts\dat_init_all.gml</script>
+      <scripts name="Vessel">
+        <script>scripts\create_vessel_map.gml</script>
+      </scripts>
     </scripts>
     <scripts name="FX">
       <scripts name="Trails">
@@ -120,14 +126,17 @@
       <object>objects\obj_menu_pause</object>
       <object>objects\obj_menu_settings</object>
     </objects>
+    <objects name="Projectiles">
+      <object>objects\obj_projectile_bullet</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
   <constants number="14">
-    <constant name="setting_light">false</constant>
-    <constant name="setting_trail">false</constant>
-    <constant name="setting_advanced">false</constant>
+    <constant name="setting_light">true</constant>
+    <constant name="setting_trail">true</constant>
+    <constant name="setting_advanced">true</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>
     <constant name="shp_striker">0</constant>
