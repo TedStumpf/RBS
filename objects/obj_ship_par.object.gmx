@@ -95,15 +95,15 @@ if (object_index == obj_ship_player)    {
 
 //  Electricity
 var strt_elec = my_elec;
-var add_elec = dat_get_raw(equipped_power, 'power_generation', 0) * gT;
+var add_elec = dat_get_raw(dat_get_default(vessel, 'dat_engine', -1), 'power_generation', 0) * gT;
 my_elec = min(my_elec + add_elec, max_elec);
 var usage = (my_elec - strt_elec) / add_elec;
 var heat_add = 0.5 + usage / 2;
 
 //  Heat
-my_heat = min(my_heat + dat_get_raw(equipped_power, 'heat_generation', 0) * heat_add * gT, max_heat);
+my_heat = min(my_heat + dat_get_raw(dat_get_default(vessel, 'dat_reactor', -1), 'heat_generation', 0) * heat_add * gT, max_heat);
 if (thrusting || stopping)  {
-    my_heat = min(my_heat + dat_get_raw(equipped_engine, 'heat_generation', 0) * gT, max_heat);
+    my_heat = min(my_heat + dat_get_raw(dat_get_default(vessel, 'dat_engine', -1), 'heat_generation', 0) * gT, max_heat);
 }
 
 //  Passive bleed
@@ -131,16 +131,16 @@ my_heat = clamp(my_heat - bleed * gT, 0, max_heat);
             <kind>1</kind>
             <string>/// Trails and Fuel
 if (gT &gt; 0) {
-    var eng_count = dat_get_raw(equipped_ship, 'engine_points', 0);
+    var eng_count = dat_get_raw(dat_get_default(vessel, 'dat_ship', -1), 'engine_points', 0);
     for (var e = 0; e &lt; eng_count; e++)    {
         if (thrusting)    {
-            var e_color = dat_get_raw(equipped_engine, 'color', c_black);
+            var e_color = dat_get_raw(dat_get_default(vessel, 'dat_engine', -1), 'color', c_black);
             if (my_trail_fx[e] == noone)   {
                 my_trail_fx[e] = instance_create(0, 0, obj_fx_trail);
                 my_trail_fx[e].color = e_color;
             }
-            var len = dat_get_raw(equipped_ship, 'engine_point_len_' + string(e), 0);
-            var dir = dat_get_raw(equipped_ship, 'engine_point_dir_' + string(e), 0);
+            var len = dat_get_raw(dat_get_default(vessel, 'dat_ship', -1), 'engine_point_len_' + string(e), 0);
+            var dir = dat_get_raw(dat_get_default(vessel, 'dat_ship', -1), 'engine_point_dir_' + string(e), 0);
             var xx = x + lengthdir_x(len, dir + image_angle);
             var yy = y + lengthdir_y(len, dir + image_angle);
             
@@ -161,7 +161,7 @@ if (gT &gt; 0) {
     }
     
     if (thrusting || stopping)  {
-        my_fuel -= dat_get_raw(equipped_engine, 'engine_consumption', 100) * gT;
+        my_fuel -= dat_get_raw(dat_get_default(vessel, 'dat_engine', -1), 'engine_consumption', 100) * gT;
     }
 }
 </string>
@@ -187,6 +187,10 @@ if (gT &gt; 0) {
           <argument>
             <kind>1</kind>
             <string>/// Render Ship
+//  Vars
+var dat_ship = dat_get_default(vessel, 'dat_ship', -1);
+var dat_engine = dat_get_default(vessel, 'dat_engine', -1);
+
 //  Shadow
 lighting_draw_shadow(sprite_base, 0, x, y, image_xscale * 1.5, image_yscale * 1.5, image_angle, c_black, 0.5);
 //  Mask
@@ -197,12 +201,12 @@ draw_sprite_ext(sprite_base, 1, x, y, image_xscale, image_yscale, image_angle, c
 draw_sprite_ext(sprite_paint, paint_eqipped, x, y, image_xscale, image_yscale, image_angle, color_2, 1);
 draw_sprite_ext(sprite_base, 2, x, y, image_xscale, image_yscale, image_angle, c_white, 1);
 
-var eng_count = dat_get_raw(equipped_ship, 'engine_points', 0);
-var e_color = dat_get_raw(equipped_engine, 'color', c_black);
+var eng_count = dat_get_raw(dat_ship, 'engine_points', 0);
+var e_color = dat_get_raw(dat_engine, 'color', c_black);
 draw_set_blend_mode(bm_add);
 for (var e = 0; e &lt; eng_count; e++)    {
-    var len = dat_get_raw(equipped_ship, 'engine_point_len_' + string(e), 0);
-    var dir = dat_get_raw(equipped_ship, 'engine_point_dir_' + string(e), 0);
+    var len = dat_get_raw(dat_ship, 'engine_point_len_' + string(e), 0);
+    var dir = dat_get_raw(dat_ship, 'engine_point_dir_' + string(e), 0);
     var xx = x + lengthdir_x(len, dir + image_angle);
     var yy = y + lengthdir_y(len, dir + image_angle);
     

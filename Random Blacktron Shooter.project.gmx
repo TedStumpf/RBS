@@ -73,6 +73,7 @@
       <script>scripts\dat_init_all.gml</script>
       <scripts name="Vessel">
         <script>scripts\create_vessel_map.gml</script>
+        <script>scripts\script27.gml</script>
       </scripts>
     </scripts>
     <scripts name="FX">
@@ -134,9 +135,9 @@
     <room>rooms\rm_test</room>
   </rooms>
   <constants number="14">
-    <constant name="setting_light">true</constant>
-    <constant name="setting_trail">true</constant>
-    <constant name="setting_advanced">true</constant>
+    <constant name="setting_light">false</constant>
+    <constant name="setting_trail">false</constant>
+    <constant name="setting_advanced">false</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>
     <constant name="shp_striker">0</constant>

@@ -31,6 +31,8 @@ var down = keyboard_check(ord('S'));
 var left = keyboard_check(ord('A'));
 var right = keyboard_check(ord('D'));
 var tm = 1;
+var dat_ship = dat_get_default(vessel, 'dat_ship', -1);
+var dat_engine = dat_get_default(vessel, 'dat_engine', -1);
 
 var loc_max_speed = max_speed;
 for (var i = 0; i &lt; instance_number(obj_speedzone); i++)    {
@@ -50,8 +52,8 @@ if (phys_speed &gt; loc_max_speed) {
 
 if (up || down) {
     //  Parallel
-    var thrust = dat_get_raw(equipped_engine, 'engine_thrust', 0) * dat_get_raw(equipped_ship, 'thrust_mult', 1);
-    var acc = tm * thrust / dat_get_total_mass(equipped_ship, equipped_engine, equipped_power);
+    var thrust = dat_get_raw(dat_engine, 'engine_thrust', 0) * dat_get_raw(dat_ship, 'thrust_mult', 1);
+    var acc = tm * thrust / dat_get_total_mass(vessel);
     var post = phys_speed + acc * (up - down) * gT;
     if ((phys_speed != loc_max_speed) &amp;&amp; (median(phys_speed, post, loc_max_speed) == loc_max_speed))   {
         phys_speed = loc_max_speed;
@@ -62,8 +64,8 @@ if (up || down) {
 
 if (left || right)  {
     //  Rotational
-    var thrust = dat_get_raw(equipped_engine, 'engine_rot', 0) * dat_get_raw(equipped_ship, 'handling_mult', 1);
-    var rot = 60 * thrust / dat_get_total_mass(equipped_ship, equipped_engine, equipped_power);
+    var thrust = dat_get_raw(dat_engine, 'engine_rot', 0) * dat_get_raw(dat_ship, 'handling_mult', 1);
+    var rot = 60 * thrust / dat_get_total_mass(vessel);
     phys_dir += rot * (left - right) * gT;
     phys_dir = (phys_dir + 360) % 360;
     image_angle = phys_dir;
