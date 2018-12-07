@@ -91,7 +91,7 @@ if (!surface_exists(surf))  {
 var rot_len = 50000 * meter_size;
 base_rot = (base_rot + rot_speed * 360* dT) % 360;
 cam_xrot = 360 * (view_xview[0] / rot_len);
-//cam_yrot = 360 * (view_yview[0] / rot_len);
+cam_yrot = 360 * (view_yview[0] / rot_len);
 
 </string>
           </argument>
@@ -146,14 +146,14 @@ surface_set_target(land_surf);
 draw_clear_alpha(c_black, 0);
 
 for (var n = 0; n &lt; i; n++) {
-    draw_sprite_ext(tex_details, lm[n], 0, 0, 1, 1, 0, c_white, random_range(0.2, 1));
+    draw_sprite_ext(tex_landmasses, lm[n], 0, 0, 1, 1, 0, c_white, random_range(0.2, 0.8));
 }
 surface_reset_target();
 
 surface_set_target(surf);
 draw_surface_ext(land_surf, 0, 0, 1, 1, 0, color_decal, 1);
 surface_reset_target();
-*/
+/**/
 
 
 tex = surface_get_texture(surf);
@@ -181,27 +181,34 @@ surface_free(land_surf);
           <argument>
             <kind>1</kind>
             <string>/// Render
-var xx = x * 0.01 + obj_ship_player.x * 0.99;
-var yy = y * 0.01 + obj_ship_player.y * 0.99;
-
+var xperc = clamp(cam_xrot / 360, -1, 1);
+var yperc = clamp(cam_yrot / 360, -1, 1);
+var xx = view_xview[0] + view_wview[0] / 2 - xperc * view_wview[0] / 3;
+var yy = view_yview[0] + view_hview[0] / 2 - yperc * view_hview[0] / 3;
+var scale = clamp(1 / point_distance(0, 0, cam_xrot / 360, cam_yrot / 360), 0.1, 1);
+var scale_rad = scale * radius;
 
 d3d_set_culling(true);
 draw_set_color(c_white);
-//d3d_transform_add_rotation_x(-90);
-//d3d_transform_add_rotation_z(cam_yrot);
 
 var main_rot = base_rot + cam_xrot;
 //main_rot = 90;
-d3d_transform_add_rotation_x(-cam_yrot);
+//d3d_transform_set_rotation_x(-cam_yrot);
 d3d_transform_add_rotation_y(main_rot);
-//d3d_transform_add_rotation_axis(lengthdir_y(1, main_rot), 0, lengthdir_x(1, main_rot), cam_yrot);
 d3d_transform_add_translation(xx, yy, 0);
-d3d_draw_ellipsoid(-radius, -radius, -radius, radius, radius, radius, tex, 1, 1, 32);
+d3d_draw_ellipsoid(-scale_rad, -scale_rad, -scale_rad, scale_rad, scale_rad, scale_rad, tex, 1, 1, 32);
+draw_set_color(c_red);
+d3d_draw_block(0, -1, -1, 400, 1, 1, -1, 1, 1);
+draw_set_color(c_lime);
+d3d_draw_block(-1, 0, -1, 1, 400, 1, -1, 1, 1);
+draw_set_color(c_blue);
+d3d_draw_block(-1, -1, 0, 1, 1, 400, -1, 1, 1);
+draw_set_colour(c_white);
 d3d_transform_set_identity();
 d3d_set_culling(false);
 
 draw_primitive_begin(pr_trianglestrip);
-var p = 32, rmin = radius * 0.90, rmax = radius * 1.05;
+var p = 32, rmin = scale_rad * 0.90, rmax = scale_rad * 1.05;
 draw_vertex_colour(xx + rmin, yy, color_atmo, 0);
 for (var a = 0; a &lt; 360; a += 360 / p)  {
     var x1 = xx + lengthdir_x(rmax, a), y1 = yy + lengthdir_y(rmax, a);
@@ -213,10 +220,10 @@ draw_vertex_colour(xx + rmax, yy, color_atmo, alpha_atmo);
 draw_primitive_end()
 
 //  Shadow
-var sr = radius * 1.1;
+var sr = scale_rad * 1.1;
 d3d_set_culling(true);
 d3d_transform_add_rotation_x(90);
-d3d_transform_add_rotation_y(cam_xrot);
+d3d_transform_add_rotation_y(cam_xrot + 90);
 //d3d_transform_add_rotation_z(90);
 d3d_transform_add_translation(xx, yy, 0);
 d3d_draw_ellipsoid(-sr, -sr, -sr, sr, sr, sr, shadow_tex, 1, 1, 32);

@@ -70,6 +70,8 @@ if (object_index == obj_ship_player)    {
     view_yview[0] = y - view_hview[0] / 2;
     background_xscale[0] = view_wview[0] / view_wport[0];
     background_yscale[0] = view_hview[0] / view_hport[0];
+    background_x[0] = view_xview[0];
+    background_y[0] = view_yview[0];
 }
 </string>
           </argument>

@@ -10,7 +10,7 @@ ds_map_add(map, 'color', make_colour_rgb(250, 140, 20));
 
 ds_map_add(map, 'mass', 500);
 ds_map_add(map, 'fuel_type', fuel_hydrazine);
-ds_map_add(map, 'engine_thrust', 8000009);
+ds_map_add(map, 'engine_thrust', 800000 * 5);
 ds_map_add(map, 'engine_rot', 35000);
 ds_map_add(map, 'engine_consumption', 0.005);
 ds_map_add(map, 'heat_generation', 1.2);
