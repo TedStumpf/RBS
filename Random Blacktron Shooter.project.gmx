@@ -35,6 +35,12 @@
     <sprites name="Projectiles">
       <sprite>sprites\spr_projectile_bullet</sprite>
     </sprites>
+    <sprites name="Tex">
+      <sprite>sprites\tex_landmasses</sprite>
+      <sprite>sprites\tex_details</sprite>
+      <sprite>sprites\tex_base</sprite>
+      <sprite>sprites\tex_shadow</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bac_test</background>
@@ -111,6 +117,7 @@
     <objects name="FX">
       <objects name="Space Objects">
         <object>objects\obj_space_dust</object>
+        <object>objects\obj_planet</object>
       </objects>
       <object>objects\obj_fx_trail</object>
       <object>objects\obj_fx_lighting</object>

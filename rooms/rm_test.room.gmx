@@ -63,6 +63,7 @@ surface_resize(application_surface, sw, sh);</code>
     <instance objName="obj_global_controller" x="0" y="0" name="inst_4FD85FC9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_station_core" x="160" y="160" name="inst_B6324287" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fx_lighting" x="32" y="0" name="inst_CE6157A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_planet" x="320" y="0" name="inst_692663D3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

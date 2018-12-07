@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// Init all globals
 dat_init_all();
+randomize();
 
 //  Settings
 global.setting_light_on = setting_light;
