@@ -37,6 +37,9 @@ phys_dir = 0;
 
 thrusting = false;
 stopping = false;
+firing = false;
+firing_target_x = 0;
+firing_target_y = 0;
 
 thruster_flame_size = 0;
 </string>
@@ -164,6 +167,55 @@ if (gT &gt; 0) {
     
     if (thrusting || stopping)  {
         my_fuel -= dat_get_raw(dat_get_default(vessel, 'dat_engine', -1), 'engine_consumption', 100) * gT;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Weapon updates
+var dat_ship = vessel_get_ship();
+var wep_count = dat_get_raw(dat_ship, 'fixed_mounts_current', 0);
+for (var w = 0; w &lt; wep_count; w++) {
+    time_since_fire[w] += gT;
+}
+
+//  Firing
+if (firing) {
+    for (var i = 0; i &lt; wep_count; i++)    {
+        var key = 'dat_weapon_' + string(i);
+        if ((ds_map_exists(vessel, key)) &amp;&amp; (dat_get_default(vessel, key, noone) != noone))  {
+            var wep = dat_get_default(vessel, key, noone);
+            if (time_since_fire[i] &gt;= 1 / dat_get_raw(wep, 'fire_rate', 1)) {
+                time_since_fire[i] = 0;
+                var len = dat_get_raw(dat_ship, 'fixed_mount_len_' + string(i), 0);
+                var dir = dat_get_raw(dat_ship, 'fixed_mount_dir_' + string(i), 0) + phys_dir;
+                var xx = x + lengthdir_x(len, dir);
+                var yy = y + lengthdir_y(len, dir);
+                var p = instance_create(xx, yy, obj_projectile_bullet);
+                p.phys_speed = dat_get_raw(wep, 'projectile_speed', 1000);
+                var acc = dat_get_raw(wep, 'accuracy', 1);
+                p.phys_dir = point_direction(x, y, mouse_x, mouse_y) + random_range(-45, 45) * (1 - acc);
+                
+                lighting_add_light(spr_fx_light, xx, yy, random_range(0.8, 1.2), 0, c_yellow, 1);
+            }
+        }
     }
 }
 </string>

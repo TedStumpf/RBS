@@ -8,6 +8,36 @@
   <parentName>obj_ship_par</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Update starter ship
+event_inherited();
+ds_map_replace(vessel_get_ship(), 'fixed_mounts_current', 4);
+var thing = true;
+while (thing)   {
+    var wep = dat_create_weapon(wep_thumper);
+    thing = vessel_add_weapon(wep);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -71,6 +101,13 @@ if (left || right)  {
     image_angle = phys_dir;
 }
 
+//  Weapons
+if ((mouse_check_button(mb_left)) &amp;&amp; (gT &gt; 0))  {
+    firing = true;
+}   else    {
+    firing = false;
+}
+
 //  Update position
 thrusting = (up &amp;&amp; !down);
 stopping = ((down &amp;&amp; !up) &amp;&amp; (phys_speed &gt; 0));
@@ -98,35 +135,9 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>/// Test
-var p = instance_create(x, y, obj_projectile_bullet);
-p.phys_speed = 1000;
-p.phys_dir = point_direction(x, y, mouse_x, mouse_y);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="53">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Test
-var p = instance_create(x, y, obj_projectile_bullet);
-p.phys_speed = 6500;
-p.phys_dir = point_direction(x, y, mouse_x, mouse_y);
+var p = instance_create(0, 0, obj_projectile_bullet);
+p.phys_speed = 8000;
+p.phys_dir = point_direction(0, 0, mouse_x, mouse_y);
 </string>
           </argument>
         </arguments>

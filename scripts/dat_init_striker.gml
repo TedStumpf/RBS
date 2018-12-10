@@ -36,7 +36,7 @@ ds_map_add(map, 'turret_mount_len_1', 10);
 ds_map_add(map, 'turret_mount_dir_1', 180);
 
 ds_map_add(map, 'fixed_mounts_max', 6);
-ds_map_add(map, 'fixed_mounts_base', 6);
+ds_map_add(map, 'fixed_mounts_base', 2);
 ds_map_add(map, 'fixed_mount_len_0', point_distance(32, 24, 25, 4));
 ds_map_add(map, 'fixed_mount_dir_0', point_direction(32, 24, 25, 4));
 ds_map_add(map, 'fixed_mount_len_1', point_distance(32, 24, 25, 43));

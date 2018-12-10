@@ -1,4 +1,5 @@
 /// dat_update_local_ship(vessel, new)
+vessel = argument0;
 var dat_ship = dat_get_default(argument0, 'dat_ship', -1);
 var dat_engine = dat_get_default(argument0, 'dat_engine', -1);
 
@@ -27,8 +28,12 @@ if (argument1)  {
     my_heat = 50;
 }
 
-
 var eng_count = dat_get_raw(dat_ship, 'engine_points', 0);
 for (var e = 0; e < eng_count; e++)    {
     my_trail_fx[e] = noone;
 }
+
+var wep_count = dat_get_raw(dat_ship, 'fixed_mounts_max', 0);
+for (var w = 0; w < wep_count; w++) {
+    time_since_fire[w] = 0;
+} 

@@ -31,6 +31,8 @@ max_size = 40 * 3;
 fade = false;
 color = c_dkgray;
 color_i = c_white;
+simple = false;
+width = 10;
 </string>
           </argument>
         </arguments>
@@ -85,8 +87,10 @@ if ((fade) &amp;&amp; (gT &gt; 0))   {
             <kind>1</kind>
             <string>/// Draw Trail
 draw_set_blend_mode(bm_add);
-//draw_trail_line(trail_list, color, 10, 0);
-draw_trail_advanced(trail_list, color, color_i, 10, 0);
+if (simple)
+    draw_trail_line(trail_list, color, width, 0, 1);
+else
+    draw_trail_advanced(trail_list, color, color_i, width, 0);
 draw_set_blend_mode(bm_normal);
 </string>
           </argument>

@@ -31,6 +31,60 @@ phys_speed = 0;
 phys_dir = 0;
 color = c_yellow;
 alarm[0] = 60;
+
+my_trail_fx = instance_create(0, 0, obj_fx_trail);
+my_trail_fx.max_size = 30 * 3;
+my_trail_fx.width = 10;
+my_trail_fx.simple = true;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Remove trail
+my_trail_fx.fade = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Destroy
+instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -57,7 +111,8 @@ alarm[0] = 60;
 if (gT &gt; 0) {
     x += lengthdir_x(phys_speed * gT * meter_size, phys_dir);
     y += lengthdir_y(phys_speed * gT * meter_size, phys_dir);
-    length = phys_speed * gT * meter_size * 1.5;
+    length = phys_speed * gT * meter_size * 1.5 * 0.5;
+    trail_add_point(my_trail_fx, x, y, image_angle);
 }
 
 </string>
@@ -83,8 +138,8 @@ if (gT &gt; 0) {
           <argument>
             <kind>1</kind>
             <string>/// Draw streched
-draw_sprite_ext(spr_projectile_bullet, 0, x, y, length * (1 / 90), 1 / 3, phys_dir, color, 1);
-draw_sprite_ext(spr_projectile_bullet, 1, x, y, length * (1 / 90), 1 / 3, phys_dir, c_white, 1);
+draw_sprite_ext(spr_projectile_bullet, 0, x, y, length * (1 / 90), 1 / 2, phys_dir, color, 1);
+draw_sprite_ext(spr_projectile_bullet, 1, x, y, length * (1 / 90), 1 / 2, phys_dir, c_white, 1);
 </string>
           </argument>
         </arguments>

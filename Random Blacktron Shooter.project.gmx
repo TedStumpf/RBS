@@ -56,6 +56,7 @@
         <script>scripts\dat_create_ship.gml</script>
         <script>scripts\dat_create_engine.gml</script>
         <script>scripts\dat_create_power.gml</script>
+        <script>scripts\dat_create_weapon.gml</script>
       </scripts>
       <scripts name="Engines">
         <script>scripts\dat_init_engines.gml</script>
@@ -75,11 +76,18 @@
       <scripts name="Utility">
         <script>scripts\dat_update_local_ship.gml</script>
         <script>scripts\dat_get_total_mass.gml</script>
+        <script>scripts\dat_init_all.gml</script>
       </scripts>
-      <script>scripts\dat_init_all.gml</script>
       <scripts name="Vessel">
         <script>scripts\create_vessel_map.gml</script>
-        <script>scripts\script27.gml</script>
+        <script>scripts\vessel_get_ship.gml</script>
+        <script>scripts\vessel_add_weapon.gml</script>
+      </scripts>
+      <scripts name="Weapons">
+        <script>scripts\dat_init_weapons.gml</script>
+        <scripts name="Ballistic">
+          <script>scripts\dat_init_thumper.gml</script>
+        </scripts>
       </scripts>
     </scripts>
     <scripts name="FX">
@@ -141,10 +149,10 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="14">
-    <constant name="setting_light">false</constant>
-    <constant name="setting_trail">false</constant>
-    <constant name="setting_advanced">false</constant>
+  <constants number="15">
+    <constant name="setting_light">true</constant>
+    <constant name="setting_trail">true</constant>
+    <constant name="setting_advanced">true</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>
     <constant name="shp_striker">0</constant>
@@ -153,6 +161,7 @@
     <constant name="eng_hyper03">1</constant>
     <constant name="pow_stockrtg">0</constant>
     <constant name="pow_micrortg">1</constant>
+    <constant name="wep_thumper">0</constant>
     <constant name="comp_orion">0</constant>
     <constant name="comp_inteliware">1</constant>
     <constant name="fuel_hydrazine">0</constant>

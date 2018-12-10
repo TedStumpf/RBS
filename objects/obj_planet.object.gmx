@@ -197,13 +197,13 @@ var main_rot = base_rot + cam_xrot;
 d3d_transform_add_rotation_y(main_rot);
 d3d_transform_add_translation(xx, yy, 0);
 d3d_draw_ellipsoid(-scale_rad, -scale_rad, -scale_rad, scale_rad, scale_rad, scale_rad, tex, 1, 1, 32);
-draw_set_color(c_red);
+/*draw_set_color(c_red);
 d3d_draw_block(0, -1, -1, 400, 1, 1, -1, 1, 1);
 draw_set_color(c_lime);
 d3d_draw_block(-1, 0, -1, 1, 400, 1, -1, 1, 1);
 draw_set_color(c_blue);
 d3d_draw_block(-1, -1, 0, 1, 1, 400, -1, 1, 1);
-draw_set_colour(c_white);
+draw_set_colour(c_white);*/
 d3d_transform_set_identity();
 d3d_set_culling(false);
 
