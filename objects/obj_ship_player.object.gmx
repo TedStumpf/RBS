@@ -27,12 +27,16 @@
             <kind>1</kind>
             <string>/// Update starter ship
 event_inherited();
-ds_map_replace(vessel_get_ship(), 'fixed_mounts_current', 4);
+/*ds_map_replace(vessel_get_ship(), 'fixed_mounts_current', 6);
 var thing = true;
 while (thing)   {
     var wep = dat_create_weapon(wep_thumper);
     thing = vessel_add_weapon(wep);
-}
+}/**/
+var wep = dat_create_weapon(wep_thumper);
+vessel_add_weapon(wep);
+wep = dat_create_weapon(wep_maw1);
+vessel_add_weapon(wep);
 </string>
           </argument>
         </arguments>

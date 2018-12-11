@@ -4,7 +4,14 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="SoundFX">
+      <sounds name="Gunshots">
+        <sound>sound\snd_gunshot_thumper</sound>
+        <sound>sound\snd_gunshot_maw1</sound>
+      </sounds>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Ships">
       <sprites name="Small">
@@ -24,6 +31,7 @@
       <sprite>sprites\spr_fx_engine_flame</sprite>
       <sprite>sprites\spr_fx_speedzone</sprite>
       <sprite>sprites\spr_fx_light</sprite>
+      <sprite>sprites\spr_fx_smokepuff</sprite>
     </sprites>
     <sprites name="HUD">
       <sprite>sprites\spr_hud_lower_left</sprite>
@@ -87,6 +95,7 @@
         <script>scripts\dat_init_weapons.gml</script>
         <scripts name="Ballistic">
           <script>scripts\dat_init_thumper.gml</script>
+          <script>scripts\dat_init_maw1.gml</script>
         </scripts>
       </scripts>
     </scripts>
@@ -129,6 +138,7 @@
       </objects>
       <object>objects\obj_fx_trail</object>
       <object>objects\obj_fx_lighting</object>
+      <object>objects\obj_fx_smoke</object>
     </objects>
     <objects name="Station">
       <object>objects\obj_station_par</object>
@@ -149,10 +159,10 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="15">
-    <constant name="setting_light">true</constant>
-    <constant name="setting_trail">true</constant>
-    <constant name="setting_advanced">true</constant>
+  <constants number="16">
+    <constant name="setting_light">false</constant>
+    <constant name="setting_trail">false</constant>
+    <constant name="setting_advanced">false</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>
     <constant name="shp_striker">0</constant>
@@ -162,6 +172,7 @@
     <constant name="pow_stockrtg">0</constant>
     <constant name="pow_micrortg">1</constant>
     <constant name="wep_thumper">0</constant>
+    <constant name="wep_maw1">1</constant>
     <constant name="comp_orion">0</constant>
     <constant name="comp_inteliware">1</constant>
     <constant name="fuel_hydrazine">0</constant>

@@ -214,6 +214,16 @@ if (firing) {
                 p.phys_dir = point_direction(x, y, mouse_x, mouse_y) + random_range(-45, 45) * (1 - acc);
                 
                 lighting_add_light(spr_fx_light, xx, yy, random_range(0.8, 1.2), 0, c_yellow, 1);
+                
+                var snd = dat_get_raw(wep, 'fire_sound', noone);
+                if (snd != noone)   {
+                    var play = audio_play_sound(snd, 1, false);
+                    audio_sound_pitch(play, random_range(0.9, 1.1));
+                }
+                
+                var smk = instance_create(xx, yy, obj_fx_smoke);
+                smk.phys_speed = phys_speed + 20;
+                smk.phys_dir = phys_dir;
             }
         }
     }
