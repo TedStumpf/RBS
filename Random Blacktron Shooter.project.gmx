@@ -151,6 +151,7 @@
       <object>objects\obj_menu_par</object>
       <object>objects\obj_menu_pause</object>
       <object>objects\obj_menu_settings</object>
+      <object>objects\obj_menu_customize_ship</object>
     </objects>
     <objects name="Projectiles">
       <object>objects\obj_projectile_bullet</object>
@@ -160,9 +161,9 @@
     <room>rooms\rm_test</room>
   </rooms>
   <constants number="16">
-    <constant name="setting_light">false</constant>
-    <constant name="setting_trail">false</constant>
-    <constant name="setting_advanced">false</constant>
+    <constant name="setting_light">true</constant>
+    <constant name="setting_trail">true</constant>
+    <constant name="setting_advanced">true</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>
     <constant name="shp_striker">0</constant>

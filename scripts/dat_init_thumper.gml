@@ -9,7 +9,7 @@ ds_map_add(map, 'fire_sound', snd_gunshot_thumper);
 
 ds_map_add(map, 'fire_rate', 4);
 ds_map_add(map, 'multishot', 1);
-ds_map_add(map, 'magazine_size', 100);
+ds_map_add(map, 'magazine_size', 40);
 ds_map_add(map, 'reload_time', 3);
 ds_map_add(map, 'accuracy', 0.95);
 

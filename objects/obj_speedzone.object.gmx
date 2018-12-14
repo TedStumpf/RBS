@@ -113,36 +113,26 @@ image_yscale = scale / 100;
             <kind>1</kind>
             <string>/// Draw
 var t = 10;
-if (true) { //global.setting_advanced_render
-    var p = 40;
-    
-    draw_primitive_begin(pr_trianglefan);
-    draw_vertex_colour(x, y, c_black, 0);
-    for (var a = 0; a &lt;= 360; a += 360 / p) {
-        draw_vertex_colour(x + lengthdir_x(scale, a), y + lengthdir_y(scale, a), image_blend, image_alpha * 0.25 - 0.05);
-    }
-    draw_primitive_end();
-    
-    draw_primitive_begin(pr_trianglestrip);
-    draw_vertex_colour(x + scale, y, image_blend, image_alpha);
-    for (var a = 0; a &lt; 360; a += 360 / p) {
-        draw_vertex_colour(x + lengthdir_x(scale + t, a), y + lengthdir_y(scale + t, a), image_blend, image_alpha);
-        draw_vertex_colour(x + lengthdir_x(scale, a + (360 / p)), y + lengthdir_y(scale, a + (360 / p)), image_blend, image_alpha);
-    }
-    draw_vertex_colour(x + scale + t, y, image_blend, image_alpha);
-    draw_primitive_end();
-}   else    {
-    var co = merge_colour(c_black, image_blend, image_alpha * 0.25 - 0.05);
-    var cr = merge_colour(c_black, image_blend, image_alpha);
-    draw_set_colour(cr);
-    draw_circle(x, y, scale + t, false);
-    draw_circle_colour(x, y, scale - t, c_black, co, false);
+var p = 40;
+if (!global.setting_advanced_render)    {
+    p = 16;
 }
 
+draw_primitive_begin(pr_trianglefan);
+draw_vertex_colour(x, y, c_black, 0);
+for (var a = 0; a &lt;= 360; a += 360 / p) {
+    draw_vertex_colour(x + lengthdir_x(scale, a), y + lengthdir_y(scale, a), image_blend, image_alpha * 0.25 - 0.05);
+}
+draw_primitive_end();
 
-
-
-
+draw_primitive_begin(pr_trianglestrip);
+draw_vertex_colour(x + scale, y, image_blend, image_alpha);
+for (var a = 0; a &lt; 360; a += 360 / p) {
+    draw_vertex_colour(x + lengthdir_x(scale + t, a), y + lengthdir_y(scale + t, a), image_blend, image_alpha);
+    draw_vertex_colour(x + lengthdir_x(scale, a + (360 / p)), y + lengthdir_y(scale, a + (360 / p)), image_blend, image_alpha);
+}
+draw_vertex_colour(x + scale + t, y, image_blend, image_alpha);
+draw_primitive_end();
 
 /*var p = 40, t = 10;
 var ci = merge_colour(c_black, image_blend, image_alpha * 0.5 - 0.05);

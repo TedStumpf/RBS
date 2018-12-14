@@ -36,4 +36,5 @@ for (var e = 0; e < eng_count; e++)    {
 var wep_count = dat_get_raw(dat_ship, 'fixed_mounts_max', 0);
 for (var w = 0; w < wep_count; w++) {
     time_since_fire[w] = 0;
+    weapon_loaded_ammo[w] = 0;
 } 

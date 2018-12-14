@@ -89,7 +89,7 @@ if (!surface_exists(surf))  {
 }
 
 var rot_len = 50000 * meter_size;
-base_rot = (base_rot + rot_speed * 360* dT) % 360;
+base_rot = (base_rot + rot_speed * 360* gT) % 360;
 cam_xrot = 360 * (view_xview[0] / rot_len);
 cam_yrot = 360 * (view_yview[0] / rot_len);
 

@@ -192,8 +192,17 @@ if (gT &gt; 0) {
             <string>/// Weapon updates
 var dat_ship = vessel_get_ship();
 var wep_count = dat_get_raw(dat_ship, 'fixed_mounts_current', 0);
-for (var w = 0; w &lt; wep_count; w++) {
-    time_since_fire[w] += gT;
+for (var i = 0; i &lt; wep_count; i++) {
+    time_since_fire[i] += gT;
+    
+    var key = 'dat_weapon_' + string(i);
+    if ((ds_map_exists(vessel, key)) &amp;&amp; (dat_get_default(vessel, key, noone) != noone))  {
+        var wep = dat_get_default(vessel, key, noone);
+        if (time_since_fire[i] &gt;= dat_get_raw(wep, 'reload_time', 1)) {
+            //  TODO: Remove Ammo
+            weapon_loaded_ammo[i] = dat_get_raw(wep, 'magazine_size', 1);
+        }
+    }
 }
 
 //  Firing
@@ -202,8 +211,10 @@ if (firing) {
         var key = 'dat_weapon_' + string(i);
         if ((ds_map_exists(vessel, key)) &amp;&amp; (dat_get_default(vessel, key, noone) != noone))  {
             var wep = dat_get_default(vessel, key, noone);
-            if (time_since_fire[i] &gt;= 1 / dat_get_raw(wep, 'fire_rate', 1)) {
+            if ((time_since_fire[i] &gt;= 1 / dat_get_raw(wep, 'fire_rate', 1)) &amp;&amp; (weapon_loaded_ammo[i] &gt; 0)) {
                 time_since_fire[i] = 0;
+                weapon_loaded_ammo[i] -= 1;
+                
                 var len = dat_get_raw(dat_ship, 'fixed_mount_len_' + string(i), 0);
                 var dir = dat_get_raw(dat_ship, 'fixed_mount_dir_' + string(i), 0) + phys_dir;
                 var xx = x + lengthdir_x(len, dir);

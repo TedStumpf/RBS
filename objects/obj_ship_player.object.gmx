@@ -30,11 +30,11 @@ event_inherited();
 /*ds_map_replace(vessel_get_ship(), 'fixed_mounts_current', 6);
 var thing = true;
 while (thing)   {
-    var wep = dat_create_weapon(wep_thumper);
+    var wep = dat_create_weapon(wep_maw1);
     thing = vessel_add_weapon(wep);
 }/**/
-var wep = dat_create_weapon(wep_thumper);
-vessel_add_weapon(wep);
+/*var wep = dat_create_weapon(wep_thumper);
+vessel_add_weapon(wep);*/
 wep = dat_create_weapon(wep_maw1);
 vessel_add_weapon(wep);
 </string>
@@ -120,6 +120,30 @@ event_inherited();
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Open Menus
+if ((keyboard_check_pressed(ord('I'))) &amp;&amp; (!instance_exists(obj_menu_par)))   {
+    instance_create(0, 0, obj_menu_customize_ship);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="6" enumb="54">
       <action>
@@ -165,6 +189,8 @@ p.phys_dir = point_direction(0, 0, mouse_x, mouse_y);
           <argument>
             <kind>1</kind>
             <string>/// Draw GUI Bars
+if (instance_exists(obj_menu_par))  exit;
+//
 draw_sprite(spr_hud_lower_left, 0, 0, window_get_height());
 draw_set_color(c_red);
 draw_text(8, 8, string(fps));
