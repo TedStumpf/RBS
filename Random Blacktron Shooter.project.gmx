@@ -36,6 +36,8 @@
     <sprites name="HUD">
       <sprite>sprites\spr_hud_lower_left</sprite>
       <sprite>sprites\spr_hud_arrow</sprite>
+      <sprite>sprites\spr_hud_icon_large</sprite>
+      <sprite>sprites\spr_hud_icon_box</sprite>
     </sprites>
     <sprites name="Station">
       <sprite>sprites\spr_station_medium_core</sprite>
@@ -160,12 +162,16 @@
   <rooms name="rooms">
     <room>rooms\rm_test</room>
   </rooms>
-  <constants number="16">
+  <constants number="20">
     <constant name="setting_light">true</constant>
     <constant name="setting_trail">true</constant>
     <constant name="setting_advanced">true</constant>
     <constant name="meter_size">3</constant>
     <constant name="max_speed">5000</constant>
+    <constant name="itm_ship">0</constant>
+    <constant name="itm_power">1</constant>
+    <constant name="itm_engine">2</constant>
+    <constant name="itm_weapon">3</constant>
     <constant name="shp_striker">0</constant>
     <constant name="shp_pod">1</constant>
     <constant name="eng_hyper01">0</constant>

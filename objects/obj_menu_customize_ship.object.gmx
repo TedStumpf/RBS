@@ -8,6 +8,44 @@
   <parentName>obj_menu_par</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Gather Stats
+player_vessel = obj_ship_player.vessel;
+player_inv = ds_list_create();
+slot_count = 3;
+var weps = dat_get_raw(dat_get_default(player_vessel, 'dat_ship', noone), 'fixed_mounts_current', 0);
+slot_count += weps;
+current_slot = 0;
+
+slot_item[0] = dat_get_default(player_vessel, 'dat_ship', noone);
+slot_item[1] = dat_get_default(player_vessel, 'dat_power', noone);
+slot_item[2] = dat_get_default(player_vessel, 'dat_engine', noone);
+for (var w = 0; w &lt; weps; w++)  {
+    var i = w + 3;
+    slot_item[i] = dat_get_default(player_vessel, 'dat_weapon_' + string(w), noone);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -51,11 +89,51 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>/// Box
+var col_out = c_aqua, col_in = merge_colour(c_aqua, c_dkgray, 0.5);
 var w = window_get_width(), h = window_get_height();
+
+//  Background
 draw_set_color(c_black);
 draw_set_alpha(0.8);
 draw_rectangle(0, 0, w, h, false);
 draw_set_alpha(1);
+
+//  Frame
+var x0 = floor(w * 0.03);
+var x1 = floor(w * 0.97);
+var y0 = ceil(h * 0.03);
+var y1 = ceil(h * 0.97);
+var t = w * 0.02;
+var ti = w * 0.005;
+var to = t - ti;
+
+var x0b = floor(w * 0.05);
+var y0b = floor(w * 0.05);
+
+draw_set_colour(col_out);
+draw_rectangle(x0, y0, x1, y0 + t, false);
+draw_rectangle(x0, y1 - t, x1, y1, false);
+draw_rectangle(x0, y0, x0 + t, y1, false);
+draw_rectangle(x1 - t, y0, x1, y1, false);
+draw_rectangle(x0, h * 0.1 + 150, x1, h * 0.1 + 150 + t, false);
+draw_set_colour(col_in);
+draw_rectangle(x0 + ti, y0 + ti, x1 - ti, y0 + to, false);
+draw_rectangle(x0 + ti, y1 - to, x1 - ti, y1 - ti, false);
+draw_rectangle(x0 + ti, y0 + ti, x0 + to, y1 - to, false);
+draw_rectangle(x1 - ti, y0 + ti, x1 - to, y1 - to, false);
+draw_rectangle(x0 + ti, h * 0.1 + 150 + ti, x1 - ti, h * 0.1 + 150 + to, false);
+
+// Icons
+var iw = 150;
+var ic = floor(w * 0.8 / iw);
+var bx = w * 0.1, by = h * 0.1;
+for (var s = 0; s &lt; min(ic, slot_count); s++)   {
+    var i = current_slot + s;
+    draw_sprite_ext(spr_hud_icon_box, 0, bx + iw * s, by, 1, 1, 0, c_aqua, 1);
+    if (slot_item[i] != noone)  {
+        draw_sprite_ext(spr_hud_icon_large, dat_get_default(slot_item[i], 'item_type', 0), bx + iw * s, by, 1, 1, 0, c_aqua, 1);
+    }
+}
 </string>
           </argument>
         </arguments>

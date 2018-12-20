@@ -106,7 +106,7 @@ var usage = (my_elec - strt_elec) / add_elec;
 var heat_add = 0.5 + usage / 2;
 
 //  Heat
-my_heat = min(my_heat + dat_get_raw(dat_get_default(vessel, 'dat_reactor', -1), 'heat_generation', 0) * heat_add * gT, max_heat);
+my_heat = min(my_heat + dat_get_raw(dat_get_default(vessel, 'dat_power', -1), 'heat_generation', 0) * heat_add * gT, max_heat);
 if (thrusting || stopping)  {
     my_heat = min(my_heat + dat_get_raw(dat_get_default(vessel, 'dat_engine', -1), 'heat_generation', 0) * gT, max_heat);
 }
